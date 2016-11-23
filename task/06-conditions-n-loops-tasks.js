@@ -422,42 +422,30 @@ function isBracketsBalanced(str) {
  *
  */
 function timespanToHumanString(startDate, endDate) {
-var ans=["a few seconds ago","a minute ago","2 minutes ago ... 45 minutes ago","an hour ago","2 hours ago ... 22 hours ago",
-  "a day ago","2 days ago ... 25 days ago","a month ago","2 months ago ... 11 months ago","a year ago","2 years ago ... 20 years ago"];
-var time=(endDate-startDate)/1000;
-//var time=Math.round(x);
-if (time>0&&time<=45) return ans[0];
-else if  (time>45&&time<=90) return ans[1];
-else if  (time>90&&time<=2760) return ans[2];
-else if  (time>2760&&time<=90*60) return ans[3];
-else if  (time>90*60&&time<=22*360) return ans[4];
-else if  (time>22*360&&time<=36*360) return ans[5];
-else if  (time>36*360&&time<=25*24*360) return ans[6];
-else if  (time>25*8640&&time<=45*8640) return ans[7];
-else if  (time>45*8640&&time<=345*8640) return ans[8];
-else if  (time>345*8640&&time<=545*8640) return ans[9];
-else if (time>545*8640) return ans[10];
-else return false;
-/*var ans=["a few seconds ago"," a minute ago","2 minutes ago ... 45 minutes ago","an hour ago","2 hours ago ... 22 hours ago",
-  "a day ago","2 days ago ... 25 days ago","a month ago","2 months ago ... 11 months ago","a year ago","2 years ago ... 20 years ago"];
-var startDate= new Date('2000-01-01 01:00:00.100');
-  var endDate=new Date ( '2000-01-01 01:00:01.100');
-var time=(endDate-startDate)/1000;
-if (time>0&&time<45) console.log(ans[0]);
-else if  (time>45&&time<90) console.log(ans[1]);
-else if  (time>90&&time<2760) console.log(ans[2]);
-else if  (time>2760&&time<90*60) console.log(ans[3]);
-else if  (time>90*60&&time<22*360) console.log(ans[4]);
-else if  (time>22*360&&time<36*360) console.log(ans[5]);
-else if  (time>36*360&&time<25*24*360) console.log(ans[6]);
-else if  (time>25*8640&&time<45*8640) console.log(ans[7]);
-else if  (time>45*8640&&time<345*8640) console.log(ans[8]);
-else if  (time>345*8640&&time<545*8640) console.log(ans[9]);
-else if (time>545*8640) console.log(ans[10]);
-else console.log (false);*/
-    throw new Error('Not implemented');
-}
 
+  var time = (endDate - startDate ) ;
+    if (time <= 45 * 1000)
+        return 'a few seconds ago';
+    if (time <= 90 * 1000)
+        return 'a minute ago';
+    if (time <= 45 * 60 * 1000)
+        return (Math.round((time - 1) / 60 / 1000)  + " minutes ago")
+    if (time <= 90 * 60 * 1000)
+        return 'an hour ago';
+    if (time <= 22 * 60 * 60 * 1000)
+        return (Math.round((time - 1) / 60 / 60 / 1000) + " hours ago");
+    if (time <= 36 * 60 * 60 * 1000)
+        return 'a day ago';
+    if (time <= 25 * 24 * 60 * 60 * 1000)
+        return (Math.round((time - 1) / 24 / 60 / 60 / 1000) + " days ago");
+    if (time <= 45 * 24 * 60 * 60 * 1000)
+        return 'a month ago';
+    if (time <= 345 * 24 * 60 * 60 * 1000)
+        return (Math.round(time / 30 / 24 / 60 / 60 / 1000) + " months ago");
+    if (time <= 545 * 24 * 60 * 60 * 1000)
+        return 'a year ago';
+    return ( Math.round(time / 365 / 24 / 60 / 60 / 1000) + " years ago");
+}
 
 /**
  * Returns the string with n-ary (binary, ternary, etc, where n<=10) representation of specified number.
