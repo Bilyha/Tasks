@@ -51,7 +51,6 @@ function getJSON(obj) {
 
 }
 
-
 /**
  * Returns the object of specified type from JSON representation
  *
