@@ -393,8 +393,18 @@ function getDigitalRoot(n) {
  */
 function isBracketsBalanced(str) {
 
-    throw new Error('Not implemented');
-}
+   var mass = [],
+          open  = ['[', '(', '{', '<'],
+          close = [']', ')', '}', '>'];
+      for (var i = 0; i < str.length; i++) {
+          if (open.indexOf(str[i]) >= 0)
+              mass.push(open.indexOf(str[i]));
+          else if (close[mass.pop()] !== str[i])
+              return false;
+      }
+    return mass.length === 0;
+
+  }
 
 
 /**
@@ -492,6 +502,20 @@ function toNaryString(num, n) {
  *   ['/web/favicon.ico', '/web-scripts/dump', '/webalizer/logs'] => '/'
  */
 function getCommonDirectoryPath(pathes) {
+  var path = '';
+  for (var i = 0; i < pathes[0].length; i++) {
+      var b = true;
+      for (var j = 1; j < pathes.length; j++)
+          if (pathes[0][i] != pathes[j][i]) {
+              b = false;
+              break;
+          }
+      if (!b)
+          break;
+      else
+          path += pathes[0][i];
+  }
+  return path.slice(0, path.lastIndexOf('/') + 1)
 
     throw new Error('Not implemented');
 }
@@ -562,8 +586,23 @@ for (var k = 0 ; k < m2[0].length; k++ ){
  *
  */
 function evaluateTicTacToePosition(position) {
-    throw new Error('Not implemented');
+  var d1 = position[0][0] !== undefined,
+        d2 = position[0][2] !== undefined;
+    for (var i = 0; i < 3; i++) {
+        if (position[i][0] === position[i][1] && position[i][0] === position[i][2] && position[i][0] !== undefined)
+            return position[i][0];
+        if (position[0][i] === position[1][i] && position[0][i] === position[2][i] && position[0][i] !== undefined)
+            return position[0][i];
+        d1 = d1 && position[0][0] === position[i][i];
+        d2 = d2 && position[0][2] === position[i][2 - i];
+    }
+    if (d1)
+        return position[0][0];
+    if (d2)
+        return position[0][2];
 }
+
+
 
 
 module.exports = {
