@@ -2,7 +2,7 @@
 
 
 function concatenateStrings(value1, value2) {
-  return value1+value2;
+  return value1 + value2;
 }
 
 function getStringLength(value) {
@@ -23,7 +23,7 @@ function getStringLength(value) {
  *   'Chuck','Norris'  => 'Hello, Chuck Norris!'
  */
 function getStringFromTemplate(firstName, lastName) {
-  return "Hello, "+ firstName+' '+lastName+'!';
+  return "Hello, " + firstName + ' ' + lastName + '!';
 }
 
 /**
@@ -37,8 +37,8 @@ function getStringFromTemplate(firstName, lastName) {
  *   'Hello, Chuck Norris!' => 'Chuck Norris'
  */
 function extractNameFromTemplate(value) {
-  var par=value.length-1;
-  return value.substring(7,par);
+  const par = value.length - 1;
+  return value.substring( 7, par);
 
 }
 
@@ -85,7 +85,7 @@ function removeLeadingAndTrailingWhitespaces(value) {
  */
 function repeatString(value, count) {
 
-  return value.repeat(count);
+  return value.repeat( count);
 
 }
 
@@ -102,7 +102,7 @@ function repeatString(value, count) {
  *   'ABABAB','BA' => 'ABAB'
  */
 function removeFirstOccurrences(str, value) {
-  return str.replace(value,"");
+  return str.replace( value, "");
 }
 
 /**
@@ -117,7 +117,7 @@ function removeFirstOccurrences(str, value) {
  *   '<a>' => 'a'
  */
 function unbracketTag(str) {
-  return str.slice(1,str.length-1);
+  return str.slice( 1, str.length-1);
 }
 
 
@@ -176,7 +176,7 @@ function extractEmails(str) {
  */
 function getRectangleString(width, height) {
 
-  var str;
+  let str;
   str = '┌' + '─'.repeat(width-2) + '┐\n';
   str += ('│' + ' '.repeat(width-2) + '│\n').repeat(height-2);
   str += '└' + '─'.repeat(width-2) + '┘\n';
@@ -221,7 +221,7 @@ function encodeToRot13(str) {
  *   isString(new String('test')) => true
  */
 function isString(value) {
-  if(value instanceof String || typeof value=='string'){
+  if ( value instanceof String || typeof value=='string') {
     return true;
   }
   return false;
@@ -257,7 +257,7 @@ function getCardId(value) {
     if (value.length === 3)
       {
         var sign = value[0] + value[1];
-        var suit = value[2];
+        var suit = value[2];                      
       }
 
     else

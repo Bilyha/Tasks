@@ -38,8 +38,7 @@ throw new Error('Not implemented');
  *    '2016-01-19T08:07:37Z' => Date()
  */
 function parseDataFromIso8601(value) {
-  return Date.parse(value);
-
+  return Date.parse( value);
 }
 
 
@@ -58,7 +57,7 @@ function parseDataFromIso8601(value) {
  *    Date(2015,1,1)    => false
  */
 function isLeapYear(date) {
-  return (date.getFullYear() % 400) ? ((date.getFullYear() % 100) ? ((date.getFullYear() % 4) ? false : true) : false) : true;
+  return ( date.getFullYear() % 400) ? (( date.getFullYear() % 100) ? (( date.getFullYear() % 4) ? false : true) : false) : true;
 }
 
 
@@ -78,17 +77,11 @@ function isLeapYear(date) {
  *    Date(2000,1,1,10,0,0),  Date(2000,1,1,15,20,10,453)   => "05:20:10.453"
  */
 function timeSpanToString(startDate, endDate) {
-var start=new Date(startDate);
-var end=new Date(endDate);
-//var stToend=new Date(end.getTime()-start.getTime());
+  const start = new Date( startDate);
+  const end = new Date( endDate);
+  const result = new Date( end.getTime() - start.getTime()).toISOString().slice( 11, -1);
 
-//var result = (parseFloat(stToend.getUTCHours()) % 10 == 0 && parseFloat(stToend.getUTCHours()) != 0 ? "" : "0") + stToend.getUTCHours() + ":" + (parseFloat(stToend.getUTCMinutes()) % 10 == 0 && parseFloat(stToend.getUTCMinutes()) != 0 ? "" : "0") + stToend.getUTCMinutes() + ":" + (parseFloat(stToend.getUTCSeconds()) % 10 == 0 && parseFloat(stToend.getUTCSeconds()) != 0 ? "" : "0") + stToend.getUTCSeconds() + "." + (parseFloat(stToend.getUTCMilliseconds()) % 1000 == 0 && parseFloat(stToend.getUTCMilliseconds()) == 0 ? "00" : "") + stToend.getUTCMilliseconds();
-var result =new Date(end.getTime()-start.getTime()).toISOString().slice(11,-1);
-
-return result;
-
-  //return new Date(end.getTime() - start.getTime()).toISOString()
-
+  return result;
 }
 
 
@@ -106,26 +99,11 @@ return result;
  *    Date.UTC(2016,3,5,21, 0) => Math.PI/2
  */
 function angleBetweenClockHands(date) {
-/*var res=new Date(date);
-var hours=0.5*(60*parseInt(res.getUTCHours())+parseInt(res.getUTCMinutes()));
-if (parseInt(res.getUTCHours())>=12)
-{
-  hours=parseInt(res.getUTCHours())-12;
-  hours=0.5*(60*hours+parseInt(res.getUTCMinutes()));
-}
-var minut=6*parseInt(res.getUTCMinutes());
-var angle=Math.abs(hours-minut);
-angle=Math.min(angle,360-angle);
-
-return angle*Math.PI/180;
-*/
-//var date=new Date(date);
-//var result= Math.abs(0.5*(60*date.getHours()-11*date.getMinutes()))
-var date=new Date(date);
-var hour=0.5*(60*(date.getUTCHours()>=12?date.getUTCHours()-12:date.getUTCHours())+date.getUTCMinutes());
-var angle=Math.abs(hour-6*date.getUTCMinutes());
-var resAngle=Math.min(angle,360-angle);
-return resAngle*Math.PI/180;
+  var date = new Date(date);
+  const hour = 0.5 * ( 60 * ( date.getUTCHours() >= 12 ? date.getUTCHours() - 12 : date.getUTCHours()) + date.getUTCMinutes());
+  const angle = Math.abs ( hour - 6 * date.getUTCMinutes());
+  const resAngle = Math.min( angle, 360 - angle);
+  return resAngle * Math.PI / 180;
 }
 
 

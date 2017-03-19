@@ -60,7 +60,7 @@ function getJSON(obj) {
  */
 function fromJSON(proto, json) {
 
-  return Object.setPrototypeOf( JSON.parse(json), proto);
+  return Object.setPrototypeOf( JSON.parse( json), proto);
 }
 
 
@@ -115,7 +115,7 @@ function fromJSON(proto, json) {
 const cssSelectorBuilder = {
 
     element: function(value) {
-      
+
         throw new Error('Not implemented');
     },
 
